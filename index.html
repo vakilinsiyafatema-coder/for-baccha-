@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Betuu ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#fff7f8;
+    color:#4b2932;
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+}
+
+.page{
+    min-height:100vh;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:35px 22px;
+    position:relative;
+}
+
+.page.active{
+    display:flex;
+    animation:fade .8s ease;
+}
+
+.content{
+    width:min(650px,100%);
+}
+
+h1,h2{
+    font-family:'DM Serif Display',serif;
+    font-weight:400;
+}
+
+h1{
+    font-size:clamp(48px,12vw,80px);
+    color:#a7435b;
+    margin-bottom:18px;
+}
+
+h2{
+    font-size:clamp(34px,8vw,54px);
+    color:#a7435b;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:15px;
+    line-height:1.9;
+}
+
+.small{
+    color:#9d7079;
+    margin-bottom:30px;
+}
+
+.heart{
+    font-size:58px;
+    margin-bottom:18px;
+    animation:pulse 1.5s infinite;
+}
+
+button{
+    border:none;
+    background:#a7435b;
+    color:white;
+    padding:14px 28px;
+    border-radius:40px;
+    font-family:'Poppins',sans-serif;
+    cursor:pointer;
+    font-size:14px;
+    box-shadow:0 10px 30px rgba(167,67,91,.25);
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    background:#8e354c;
+}
+
+.story{
+    background:rgba(255,255,255,.85);
+    padding:30px;
+    border-radius:27px;
+    box-shadow:0 12px 40px rgba(130,50,70,.08);
+    margin:25px 0;
+}
+
+.date{
+    display:inline-block;
+    background:#f6d9df;
+    color:#963d55;
+    padding:8px 17px;
+    border-radius:30px;
+    font-size:12px;
+    letter-spacing:1.5px;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+.highlight{
+    color:#a7435b;
+    font-weight:600;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin:25px 0;
+}
+
+.card{
+    background:white;
+    padding:23px 15px;
+    border-radius:21px;
+    box-shadow:0 8px 25px rgba(130,50,70,.07);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card .emoji{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:13px;
+    line-height:1.65;
+}
+
+.no-photo{
+    border:1px dashed #d99eac;
+    padding:30px 22px;
+    border-radius:25px;
+    background:#fffafb;
+    margin:25px 0;
+}
+
+.no-photo .big{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.envelopes{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin:25px 0;
+}
+
+.envelope{
+    background:white;
+    border-radius:20px;
+    padding:22px 12px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(130,50,70,.07);
+    transition:.3s;
+}
+
+.envelope:hover{
+    transform:scale(1.03);
+    background:#fff0f3;
+}
+
+.envelope .icon{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.letter{
+    display:none;
+    background:white;
+    padding:25px;
+    border-radius:22px;
+    text-align:left;
+    line-height:1.9;
+    box-shadow:0 8px 30px rgba(130,50,70,.08);
+}
+
+.letter.show{
+    display:block;
+    animation:fade .5s ease;
+}
+
+.signature{
+    margin-top:28px;
+    font-family:'DM Serif Display',serif;
+    color:#a7435b;
+    font-size:29px;
+}
+
+.final{
+    font-size:16px;
+}
+
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:#a7435b;
+    width:0%;
+    z-index:100;
+    transition:.5s;
+}
+
+.dots{
+    position:fixed;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:6px;
+    z-index:50;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+    background:#e7b9c3;
+    border-radius:20px;
+    transition:.3s;
+}
+
+.dot.active{
+    width:21px;
+    background:#a7435b;
+}
+
+.floating-heart{
+    position:fixed;
+    pointer-events:none;
+    z-index:200;
+    animation:float 4s linear forwards;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.15);}
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0) rotate(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100vh) rotate(25deg);
+        opacity:0;
+    }
+}
+
+@media(max-width:500px){
+    .cards,
+    .envelopes{
+        grid-template-columns:1fr;
+    }
+
+    .story{
+        padding:23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- 1 : OPENING -->
+<section class="page active">
+<div class="content">
+
+    <div class="heart">♡</div>
+
+    <h1>Hey Betuu...</h1>
+
+    <p class="small">
+        I made a little something for you.<br>
+        So please sit properly, Jaan. 😭❤️
+    </p>
+
+    <button onclick="nextPage()">
+        Open your surprise ♡
+    </button>
+
+</div>
+</section>
+
+
+<!-- 2 : BEGINNING -->
+<section class="page">
+<div class="content">
+
+    <div class="date">07 FEBRUARY</div>
+
+    <h2>It all started here...</h2>
+
+    <div class="story">
+
+        <p>
+            One random conversation.
+            <br>
+            One random day on Snapchat.
+            <br><br>
+
+            <span class="highlight">7 February.</span>
+            <br><br>
+
+            I had absolutely no idea that talking to you that day
+            would eventually give me
+            <span class="highlight">you.</span>
+            <br><br>
+
+            If someone had told me that day,
+            "This person is going to become really important to you,"
+            I probably wouldn't have believed them.
+            😭
+            <br><br>
+
+            But here we are...
+            <br><br>
+
+            <span class="highlight">
+                Nine months later.
+            </span>
+        </p>
+
+    </div>
+
+    <button onclick="nextPage()">And then... →</button>
+
+</div>
+</section>
+
+
+<!-- 3 : PROPOSAL -->
+<section class="page">
+<div class="content">
+
+    <div class="date">11 / 12 FEBRUARY</div>
+
+    <h2>The day you proposed...</h2>
+
+    <div class="story">
+
+        <p>
+            And then came <span class="highlight">that day.</span>
+            <br><br>
+
+            You proposed to me.
+            <br><br>
+
+            And while you were probably thinking
+            about us...
+            <br>
+            I was busy overthinking
+            approximately <span class="highlight">1000 things. 😭</span>
+            <br><br>
+
+            I was scared.
+            Confused.
+            Thinking too much.
+            <br><br>
+
+            But do you know what made me fall for you?
+            <br><br>
+
+            <span class="highlight">
+                The way you handled me.
+            </span>
+            <br><br>
+
+            You didn't make me feel stupid
+            for overthinking.
+            <br>
+            You didn't get tired of explaining.
+            <br>
+            You didn't make me feel like I was too much.
+            <br><br>
+
+            You simply stayed.
+            <br>
+            You understood.
+            <br>
+            You made me feel safe.
+            <br><br>
+
+            And somewhere between all my thoughts
+            and all your patience...
+            <br><br>
+
+            <span class="highlight">
+                I fell in love with you.
+            </span>
+        </p>
+
+    </div>
+
+    <button onclick="nextPage()">Keep going ♡</button>
+
+</div>
+</section>
+
+
+<!-- 4 : 9 MONTHS -->
+<section class="page">
+<div class="content">
+
+    <div class="heart">♡</div>
+
+    <h2>9 months of us</h2>
+
+    <p class="small">
+        And somehow, you became my favourite part
+        of my everyday life.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="emoji">💬</div>
+            <p>
+                All our conversations that somehow
+                turn into hours.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">😂</div>
+            <p>
+                All the random things that make
+                absolutely no sense to anyone else.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🥺</div>
+            <p>
+                All the moments when one of us
+                just needed the other.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">❤️</div>
+            <p>
+                All those tiny moments that slowly
+                made you feel like home.
+            </p>
+        </div>
+
+    </div>
+
+    <button onclick="nextPage()">There's more... →</button>
+
+</div>
+</section>
+
+
+<!-- 5 : HIS HABITS -->
+<section class="page">
+<div class="content">
+
+    <h2>Things you do...</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="emoji">😏</div>
+            <p>
+                Flirt with me for absolutely
+                no reason.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">😭</div>
+            <p>
+                Make me smile when I'm trying
+                very hard not to.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🫶🏻</div>
+            <p>
+                Somehow make me feel understood
+                without me explaining everything.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🙄</div>
+            <p>
+                Annoy your Jaan and then act
+                completely innocent.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🥹</div>
+            <p>
+                Be patient with my overthinking.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">❤️</div>
+            <p>
+                Just be you...
+                and somehow that's enough.
+            </p>
+        </div>
+
+    </div>
+
+    <button onclick="nextPage()">Okay, next... 😭</button>
+
+</div>
+</section>
+
+
+<!-- 6 : NO PHOTOS -->
+<section class="page">
+<div class="content">
+
+    <h2>No pictures...</h2>
+
+    <div class="no-photo">
+
+        <div class="big">🥺</div>
+
+        <p>
+            We don't have cute couple pictures.
+            <br><br>
+
+            No café selfies.
+            <br>
+            No random pictures together.
+            <br>
+            No stupid couple photos.
+            <br><br>
+
+            Because our story has happened
+            through screens so far.
+            <br><br>
+
+            And honestly?
+            <br><br>
+
+            <span class="highlight">
+                That's okay.
+            </span>
+            <br><br>
+
+            Because even without pictures,
+            we still have
+            <span class="highlight">nine months worth of memories.</span>
+            <br><br>
+
+            Our conversations.
+            <br>
+            Our laughs.
+            <br>
+            Our stupid moments.
+            <br>
+            Our late-night talks.
+            <br>
+            Our little fights.
+            <br>
+            Our "I miss you"s.
+            <br><br>
+s
+        </p>
+
+    </div>
+
+    <button onclick="nextPage()">One more thing... →</button>
+
+</div>
+</section>
+
+
+<!-- 7 : OPEN WHEN -->
+<section class="page">
+<div class="content">
+
+    <h2>Open when...</h2>
+
+    <p class="small">
+        A few tiny letters from your Jaan ♡
+    </p>
+
+    <div class="envelopes">
+
+        <div class="envelope" onclick="openLetter(1)">
+            <div class="icon">💌</div>
+            <p>You miss me</p>
+        </div>
+
+        <div class="envelope" onclick="openLetter(2)">
+            <div class="icon">🥺</div>
+            <p>You're sad</p>
+        </div>
+
+        <div class="envelope" onclick="openLetter(3)">
+            <div class="icon">😂</div>
+            <p>You need a smile</p>
+        </div>
+
+        <div class="envelope" onclick="openLetter(4)">
+            <div class="icon">❤️</div>
+            <p>You need reassurance</p>
+        </div>
+
+    </div>
+
+
+    <div id="letter1" class="letter">
+        <p>
+            If you miss me...
+            <br><br>
+            just remember that somewhere,
+            your Jaan is probably missing you too.
+            <br><br>
+            Distance can be annoying,
+            but it doesn't change how much
+            you mean to me.
+            <br><br>
+            So don't feel alone, okay?
+            ❤️
+        </p>
+    </div>
+
+
+    <div id="letter2" class="letter">
+        <p>
+            Hey Betuu...
+            <br><br>
+            It's okay if today isn't your day.
+            You don't have to pretend to be okay
+            all the time.
+            <br><br>
+            Take your time.
+            Breathe.
+            <br><br>
+            And remember:
+            your Jaan is always one message away.
+            🫶🏻
+        </p>
+    </div>
+
+
+    <div id="letter3" class="letter">
+        <p>
+            Emergency smile delivery! 🚨
+            <br><br>
+            Did you smile?
+            <br><br>
+            No?
+            <br><br>
+            Fine.
+            Imagine your Jaan staring at you
+            until you smile.
+            😭
+            <br><br>
+            Now smile.
+            That's an order.
+        </p>
+    </div>
+
+
+    <div id="letter4" class="letter">
+        <p>
+            In case you ever wonder...
+            <br><br>
+
+            Yes, I choose you.
+            <br><br>
+
+            Yes, I care about you.
+            <br><br>
+
+            Yes, you are important to me.
+            <br><br>
+
+            And yes...
+            <br>
+            <span class="highlight">
+            I still love my annoying, flirty Betuu.
+            </span>
+            ❤️
+        </p>
+    </div>
+
+    <br>
+
+    <button onclick="nextPage()">Last page ♡</button>
+
+</div>
+</section>
+
+
+<!-- 8 : FINAL -->
+<section class="page">
+<div class="content">
+
+    <div class="heart">❤️</div>
+
+    <h2>To my Betuu...</h2>
+
+    <div class="story final">
+
+        <p>
+
+            Sabir,
+            <br><br>
+
+            I don't know if you realise
+            how special these nine months are to me.
+            <br><br>
+
+            We haven't had the typical
+            "couple memories".
+            <br>
+            We haven't taken pictures together.
+            <br>
+            We haven't gone on dates.
+            <br>
+            We haven't even met.
+            <br><br>
+
+            And yet...
+            <br><br>
+
+            somehow you became
+            such a big part of my life.
+            <br><br>
+
+            It started with one random
+            Snapchat conversation on
+            <span class="highlight">7 February.</span>
+            <br><br>
+
+            Then came your proposal.
+            <br>
+            My overthinking.
+            <br>
+            Your patience.
+            <br>
+            Your way of making me feel understood.
+            <br><br>
+
+            And somewhere in between all of that,
+            you became
+            <span class="highlight">my person.</span>
+            <br><br>
+
+            Thank you for being patient with me.
+            <br>
+            Thank you for listening to me.
+            <br>
+            Thank you for making me smile.
+            <br>
+            Thank you for flirting with me
+            even when I pretend to be annoyed. 🙄
+            <br><br>
+
+            And thank you...
+            for being my pyaara sa cute sa bacchaa.
+            ❤️
+
+            <br><br>
+
+            I don't have a picture of us
+            to put at the end of this website.
+            <br><br>
+
+            So instead,
+            I'm leaving you with our story.
+            <br><br>
+
+            <span class="highlight">
+            A story that started with a "hey"
+            on Snapchat...
+            and became something
+            I never expected.
+            </span>
+
+            <br><br>
+
+            Happy Boyfriend's Day, Sabir.
+            <br><br>
+
+            I love you, bacchaaa.
+            ❤️
+
+        </p>
+
+        <div class="signature">
+            — Your Jaan ♡
+        </div>
+
+    </div>
+
+    <button onclick="finalSurprise()">
+        P.S. Betuu... 👀
+    </button>
+
+</div>
+</section>
+
+
+<div class="dots" id="dots"></div>
+
+
+<script>
+
+let currentPage = 0;
+
+const pages = document.querySelectorAll('.page');
+const dots = document.getElementById('dots');
+const progress = document.getElementById('progress');
+
+
+/* PAGE DOTS */
+
+pages.forEach((page,index)=>{
+
+    const dot = document.createElement('div');
+
+    dot.className = 'dot';
+
+    if(index === 0)
+        dot.classList.add('active');
+
+    dots.appendChild(dot);
+
+});
+
+
+/* PAGE NAVIGATION */
+
+function nextPage(){
+
+    if(currentPage < pages.length - 1){
+
+        currentPage++;
+
+        updatePage();
+
+    }
+
+}
+
+
+function updatePage(){
+
+    pages.forEach((page,index)=>{
+
+        page.classList.toggle(
+            'active',
+            index === currentPage
+        );
+
+    });
+
+
+    document.querySelectorAll('.dot')
+    .forEach((dot,index)=>{
+
+        dot.classList.toggle(
+            'active',
+            index === currentPage
+        );
+
+    });
+
+
+    progress.style.width =
+        ((currentPage + 1) / pages.length) * 100 + '%';
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:'smooth'
+
+    });
+
+
+    floatingHearts(5);
+
+}
+
+
+/* OPEN LETTERS */
+
+function openLetter(number){
+
+    document.querySelectorAll('.letter')
+    .forEach(letter=>{
+
+        letter.classList.remove('show');
+
+    });
+
+
+    document
+        .getElementById('letter'+number)
+        .classList.add('show');
+
+}
+
+
+/* FLOATING HEARTS */
+
+function floatingHearts(amount){
+
+    for(let i=0;i<amount;i++){
+
+        setTimeout(()=>{
+
+            const heart =
+                document.createElement('div');
+
+            heart.className =
+                'floating-heart';
+
+            heart.innerHTML =
+                ['♡','♥','❤','💗','💕']
+                [Math.floor(Math.random()*5)];
+
+            heart.style.left =
+                Math.random()*100+'vw';
+
+            heart.style.bottom =
+                '-30px';
+
+            heart.style.fontSize =
+                (15+Math.random()*22)+'px';
+
+            heart.style.color =
+                '#b34b64';
+
+            document.body.appendChild(heart);
+
+            setTimeout(()=>{
+
+                heart.remove();
+
+            },4000);
+
+        },i*120);
+
+    }
+
+}
+
+
+/* FINAL SURPRISE */
+
+function finalSurprise(){
+
+    for(let i=0;i<40;i++){
+
+        setTimeout(()=>{
+
+            const heart =
+                document.createElement('div');
+
+            heart.className =
+                'floating-heart';
+
+            heart.innerHTML =
+                ['❤️','💗','💕','💖','♡']
+                [Math.floor(Math.random()*5)];
+
+            heart.style.left =
+                Math.random()*100+'vw';
+
+            heart.style.bottom =
+                '-30px';
+
+            heart.style.fontSize =
+                (18+Math.random()*30)+'px';
+
+            document.body.appendChild(heart);
+
+            setTimeout(()=>{
+
+                heart.remove();
+
+            },4000);
+
+        },i*70);
+
+    }
+
+    setTimeout(()=>{
+
+        alert(
+`I love you, Bacchaaa. ❤️
+
+— Your Jaan`
+        );
+
+    },1200);
+
+}
+
+
+/* START */
+
+progress.style.width =
+    (1/pages.length)*100+'%';
+
+</script>
+
+</body>
+</html>
